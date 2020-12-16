@@ -9,8 +9,7 @@ const Product = ({ name, image, price, rating, numReviews }) => {
         <Card.Title>{name}</Card.Title>
         <Card.Text as="div">
           <div>
-            {rating} from {numReviews}
-            <Rating value={3} />
+            <Rating value={rating} />
           </div>
         </Card.Text>
         <Card.Text as="h3">${price}</Card.Text>
