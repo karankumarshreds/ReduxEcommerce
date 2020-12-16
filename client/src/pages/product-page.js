@@ -15,7 +15,7 @@ const ProductPage = ({ match }) => {
         <Col md={6}>
           <Image src={product.image} fluid />
         </Col>
-        <Col md={3}>
+        <Col md={4}>
           {/* flush gets rid of border of the contianer */}
           <ListGroup variant="flush">
             <ListGroup.Item>
@@ -23,6 +23,20 @@ const ProductPage = ({ match }) => {
             </ListGroup.Item>
             <ListGroup.Item>
               <Rating value={product.rating} />
+            </ListGroup.Item>
+            <ListGroup.Item>
+              <Row className="align-items-center">
+                <Col>
+                  {product.countInStock > 0 ? "In Stock" : "Out Of Stock"}
+                </Col>
+                <Col>
+                  <Button
+                    className="btn btn-dark"
+                    disabled={product.countInStock <= 0}>
+                    Add To Cart
+                  </Button>
+                </Col>
+              </Row>
             </ListGroup.Item>
             <ListGroup.Item>Price: {product.price}</ListGroup.Item>
             <ListGroup.Item>Description: {product.description}</ListGroup.Item>
