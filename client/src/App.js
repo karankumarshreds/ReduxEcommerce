@@ -4,7 +4,6 @@ import { BrowserRouter, Route } from "react-router-dom";
 
 // components
 import Header from "./components/Header";
-import Footer from "./components/Footer";
 
 // pages
 import HomePage from "./pages/home";
@@ -15,8 +14,8 @@ function App() {
     <BrowserRouter>
       <Header />
       <Route path="/" exact component={HomePage} />
-      <Route path="/productpage/:productId" exact component={ProductPage} />
-      <Footer />
+      <Route path="/product/:productId" component={ProductPage} />
+      {/* <Footer /> */}
     </BrowserRouter>
   );
 }
