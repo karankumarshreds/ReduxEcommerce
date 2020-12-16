@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import { BrowserRouter, Route } from "react-router-dom";
 
 // components
 import Header from "./components/Header";
@@ -7,17 +8,16 @@ import Footer from "./components/Footer";
 
 // pages
 import HomePage from "./pages/home";
-
-// css
-// import { Container } from "react-bootstrap";
+import ProductPage from "./pages/product-page";
 
 function App() {
   return (
-    <div className="App">
+    <BrowserRouter>
       <Header />
-      <HomePage />
+      <Route path="/" exact component={HomePage} />
+      <Route path="/productpage/:productId" exact component={ProductPage} />
       <Footer />
-    </div>
+    </BrowserRouter>
   );
 }
 

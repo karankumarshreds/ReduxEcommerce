@@ -17,6 +17,7 @@ const HomePage = () => {
               rating={product.rating}
               numReviews={product.numReviews}
               price={product.price}
+              id={product._id}
             />
           </Col>
         ))}
