@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Row, Col, Spinner, Alert } from "react-bootstrap";
+import { Row, Col, Spinner } from "react-bootstrap";
 import { listProducts } from "../actions/product";
 
 import Product from "../components/Product";
+import Error from "../components/Error";
 
 const HomePage = () => {
-  const [show, setShow] = useState(true);
   const dispatch = useDispatch();
   useEffect(() => {
     // used to dispatch action
@@ -16,19 +16,11 @@ const HomePage = () => {
   const { loading, products, error } = useSelector(
     (state) => state.productList
   );
-  console.log(products);
   if (loading) {
     return <Spinner animation="grow" />;
   }
   if (error) {
-    if (show) {
-      return (
-        <Alert variant="danger" onClose={() => setShow(false)} dismissible>
-          <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
-          <p>{error}</p>
-        </Alert>
-      );
-    }
+    return <Error message={error} />;
   }
   return (
     <div className="container">

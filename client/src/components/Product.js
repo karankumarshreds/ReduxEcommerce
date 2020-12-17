@@ -2,7 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Card, Button } from "react-bootstrap";
 import Rating from "./Rating";
+
 const Product = ({ name, image, price, rating, id }) => {
+  console.log("RATING", rating);
   return (
     <Card className="p-2 my-3">
       <Card.Img variant="top" src={image} />
