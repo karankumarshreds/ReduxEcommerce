@@ -10,6 +10,9 @@ export const listProducts = () => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST });
     const { data } = await axios.get(`${backendURI}/api/products`);
+    for (let i = 0; i < 10000000; i++) {
+      console.log();
+    }
     dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
