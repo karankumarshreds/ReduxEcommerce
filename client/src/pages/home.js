@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Row, Col } from "react-bootstrap";
+import { listProducts } from "../actions/product";
+
 import Product from "../components/Product";
 import products from "../products";
 
 const HomePage = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(listProducts());
+  }, [dispatch]);
   return (
     <div className="container">
       <h1 className="my-4 py-4">Products</h1>
