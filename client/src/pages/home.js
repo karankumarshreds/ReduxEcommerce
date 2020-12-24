@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Row, Col, Spinner } from "react-bootstrap";
-import { listProducts } from "../actions/product";
+// import { productsListAction, productDetailsAction } from "../actions/product";
+import { productsListAction } from "../actions/product";
 
 import Product from "../components/Product";
 import Error from "../components/Error";
@@ -10,11 +11,11 @@ const HomePage = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     // used to dispatch action
-    dispatch(listProducts());
+    dispatch(productsListAction());
   }, [dispatch]);
   // used to get the state
   const { loading, products, error } = useSelector(
-    (state) => state.productList
+    (state) => state.productList // as named in store
   );
   if (loading) {
     return <Spinner animation="grow" />;
