@@ -1,11 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Row, Col, Image, ListGroup, Card, Button } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { productDetailsAction } from "../actions/product";
+import { Row, Col, Image, ListGroup, Button, Spinner } from "react-bootstrap";
 import Rating from "../components/Rating";
-import products from "../products";
+
+import Error from "../components/Error";
 
 const ProductPage = ({ match }) => {
-  const product = products.find((p) => p._id === match.params.productId);
+  // const product = products.find((p) => p._id === match.params.productId);
+  let productId = match.params.productId;
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(productDetailsAction(productId));
+  }, [dispatch, productId]);
+  const { loading, product, error } = useSelector(
+    (state) => state.productDetail
+  );
+  if (loading) {
+    return <Spinner animation="grow" />;
+  }
+  if (error) {
+    return <Error message={error} />;
+  }
+  console.log("RECIEVED DATA", product);
   return (
     <div className="container mt-5">
       <Link className="btn btn-light my-3" to="/">
@@ -22,7 +40,7 @@ const ProductPage = ({ match }) => {
               <h3 style={{ textTransform: "uppercase" }}>{product.name}</h3>
             </ListGroup.Item>
             <ListGroup.Item>
-              <Rating value={product.rating} />
+              <Rating value={product?.rating} />
             </ListGroup.Item>
             <ListGroup.Item>
               <Row className="align-items-center">
