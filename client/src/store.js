@@ -6,11 +6,14 @@ import {
   productListReducer,
 } from "./reducers/productReducer";
 
+import { cartAddItemReducer } from "./reducers/cartReducer";
+
 const reducer = combineReducers({
   // productList will be the state
   // for the components
   productList: productListReducer,
   productDetail: productDetailReducer,
+  cart: cartAddItemReducer,
 });
 
 const initialState = {};
