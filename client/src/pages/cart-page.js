@@ -17,9 +17,11 @@ const CartPage = ({ match, location, history }) => {
   // whatever comes after ? in the url including the '?'
   // in case url is : http://example.com/productId?qty=1
   // location.search === ?qty=1
-  const qty = location.search;
+  const qty = location?.search?.split("=")[1] || 1;
   const dispatch = useDispatch();
   useEffect(() => {
+    // if (productId) {
+    // }
     dispatch(addToCartAction());
   });
   return <div>CART</div>;
