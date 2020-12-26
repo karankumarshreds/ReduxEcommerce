@@ -1,7 +1,7 @@
 import axios from "axios";
 import { CART_ADD_ITEM } from "../reducers/constants/cart";
 
-const addToCartAction = (id, qty) => async (dispatch) => {
+export const addToCartAction = (id, qty) => async (dispatch, getState) => {
   const { data } = await axios.get(`/api/products/${id}`);
   dispatch({
     type: CART_ADD_ITEM,
